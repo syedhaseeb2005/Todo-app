@@ -76,12 +76,13 @@ const submission = () => {
     }
     const uniqueid = new Date().getTime()
     
-    const itemdate = `<div id="${uniqueid}" class="item">
-        <p>${inputarea.value}</p>
-        <div class="btn">
-            <button onclick="edititem('${uniqueid}')">Edit</button>
-            <button onclick="deleteitem('${uniqueid}')">Delete</button>
-        </div>`
+    const itemdate =   `<div id="${uniqueid}" class="item">
+                            <p>${inputarea.value}</p>
+                            <div class="btn">
+                                <button onclick="edititem('${uniqueid}')">Edit</button>
+                                <button onclick="deleteitem('${uniqueid}')">Delete</button>
+                            </div>    
+                        </div>`
         item.push(itemdate)
         itemlist.innerHTML = item.join("")
         alertshow(`${inputarea.value} is added to your list`)

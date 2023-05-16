@@ -33,7 +33,7 @@
     /* align-items: flex-start; */
     /* flex-direction: row-reverse; */
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 0 1fr;
     color: #fff;
     font-size: 1.6rem;
     /* padding:  10px 0px; */
