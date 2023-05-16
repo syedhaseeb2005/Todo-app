@@ -90,9 +90,14 @@ const submission = () => {
 }
 // idher hym ny clear ka fuction chalya hai taky hum item ko aik saath sab ko delete kar sakhy
 const clear = () => {
+    if(inputarea.value === ""){
+        clearbtn.classList.toggle= 'clear'
+        return
+    }
     item = []
     itemlist.innerHTML = ``
     alertshow(`All item are cleared`)
+   
 
 }
 clearbtn.addEventListener('click', clear)
