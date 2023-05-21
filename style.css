@@ -6,19 +6,130 @@
 .main-area{
     background: #363636;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     text-align: center;
 }
+h1 {
+    opacity: 0.999999; /* this is key but only works in chrome*/
+    font-size: clamp(1.5rem, 6vw, 10rem);
+    color: #fff;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  h1:before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    left: 3rem;
+    width: 6rem;
+    
+    -webkit-backdrop-filter: 
+      invert(1);
+    backdrop-filter: 
+      invert(1);
+  }
+  .txt {
+    position: relative;
+    color: #efeffe;
+    background-color: #080505;
+  }
+  
+  .txt:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    height: 100%;
+    left: 3rem;
+    width: 10rem;
+    -webkit-backdrop-filter: 
+      brightness(300%) 
+      contrast(300%) 
+      invert(1);
+    backdrop-filter: 
+      brightness(300%) 
+      contrast(300%) 
+      invert(1);
+  }
+  
+  /* fluff */
+  h1:before {
+    /* not sure why skew is working here in firefox and not in the h1 */
+    transform: skewX(15deg);
+    animation: 4s linear 0.5s infinite alternate move;
+  }
+  .txt {
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* margin: 0 auto; */
+    padding: 1.5vmin;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* position: relative; */
+    /* bottom: 200px; */
+    /* left: 150px; */
+    /* border-radius: 0.25em; */
+    overflow: hidden;
+    /* position: relative;
+    bottom: 200px; */
+  }
+  h1 {
+    font-size: clamp(2rem, 8vw, 8rem);
+  }
+  .txt:before {
+    animation: 5s linear infinite alternate move;  
+  }
+  @keyframes move {
+    from {
+      left: -5rem;
+    }
+    to {
+      left: calc(100% - 5rem);
+    }
+  }
+  /* chrome only */
+  @supports not (mask-image: linear-gradient(red, blue)) {
+      .txt:before{
+        background-color: #b8c6db;
+    background-image: 
+      linear-gradient(
+        315deg, #b8c6db 0%, #f5f7fa 74%);
+    /* -webkit-mask-image: 
+      linear-gradient(
+        #000,
+        transparent 50%
+      ),
+      repeating-linear-gradient(
+        90deg, 
+        #000, #000 1%, 
+        transparent, 0%, transparent 10%); */
+    /* dont know why skew seems to make firefox cringe here but not in the h2 */
+        transform: skew(15deg);
+      } 
+  }
+  /* safari */
+  @supports (-webkit-backdrop-filter: invert(1)) {
+    .txt:before {
+      transform: skewX(15deg);
+    }
+  }
+
+
 .box{
     /* box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; */
     padding: 50px;
     /* border-radius: 12px; */
-    background:  linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
+    /* background:  linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0)); */
     backdrop-filter: blur(20px);
     box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.37);
-    border: 2px solid rgba(255,255,255,0.8);
+    /* border: 2px solid rgba(255,255,255,0.8); */
     border-radius: 32px;
     /* display: flex; */
     /* flex-direction: column; */
@@ -69,6 +180,7 @@
     border-radius: 5px;
     transition: 1s linear;
     margin-top: 20px;
+    /* display: hidden; */
 }
 
 .clear:hover{
@@ -95,5 +207,252 @@
     color: #fff;
 }
 .para-alert{
+    /* position: fixed;
+    right: 250px; */
     visibility: hidden;
+}
+.modal{
+    /* display: flex; */
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* position: absolute; */
+    border-radius: 12px;
+    width: 17em;
+    height: 11em;
+    left: 472px;
+    top: 170px;
+    z-index: 2;
+    background: #191c29;
+    /* width: var(--card-width); */
+    /* height: var(--card-height); */
+    /* padding: 3px; */
+    /* position: relative; */
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    font-size: 1.5em;
+    color: rgb(88 199 250 / 0%);
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+.bubbly-button{
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    display: inline-block;
+    font-size: 1em;
+    padding: 10px 17px;
+    margin-top: 10px;
+    /* margin-bottom: 60px; */
+    -webkit-appearance: none;
+    background-color: #ff0081;
+    color: #fff;
+    appearance: none;
+    background-color: button-bg;
+    color: button-text-color;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+    box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+    
+    &:focus {
+      outline: 0;
+    }
+    
+    &:before, &:after{
+      position: absolute;
+      content: '';
+      display: block;
+      width: 140%;
+      height: 100%;
+      left: -20%;
+      z-index: -1000;
+      transition: all ease-in-out 0.5s;
+      background-repeat: no-repeat;
+    }
+    
+    &:before{
+      display: none;
+      top: -75%;
+      background-image:  
+        radial-gradient(circle, button-bg 20%, transparent 20%),
+      radial-gradient(circle,  transparent 20%, button-bg 20%, transparent 30%),
+      radial-gradient(circle, button-bg 20%, transparent 20%), 
+      radial-gradient(circle, button-bg 20%, transparent 20%),
+      radial-gradient(circle,  transparent 10%, button-bg 15%, transparent 20%),
+      radial-gradient(circle, button-bg 20%, transparent 20%),
+      radial-gradient(circle, button-bg 20%, transparent 20%),
+      radial-gradient(circle, button-bg 20%, transparent 20%),
+      radial-gradient(circle, button-bg 20%, transparent 20%);
+    /* background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%; */
+    /* //background-position: 0% 80%, -5% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 85% 30%; */
+    }
+    
+    &:after{
+      display: none;
+      bottom: -75%;
+      background-image:  
+      radial-gradient(circle, button-bg 20%, transparent 20%), 
+      radial-gradient(circle, button-bg 20%, transparent 20%),
+      radial-gradient(circle,  transparent 10%, button-bg 15%, transparent 20%),
+      radial-gradient(circle, button-bg 20%, transparent 20%),
+      radial-gradient(circle, button-bg 20%, transparent 20%),
+      radial-gradient(circle, button-bg 20%, transparent 20%),
+      radial-gradient(circle, button-bg 20%, transparent 20%);
+    background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+    /* //background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%; */
+    }
+   
+    &:active{
+      transform: scale(0.9);
+      background-color: darken(button-bg, 5%);
+      box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+    }
+    
+    &.animate{
+      &:before{
+        display: block;
+        animation: topBubbles ease-in-out 0.75s forwards;
+      }
+      &:after{
+        display: block;
+        animation: bottomBubbles ease-in-out 0.75s forwards;
+      }
+    }
+  }
+  
+  
+  @keyframes topBubbles {
+    0%{
+      background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+    }
+      50% {
+        background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;}
+   100% {
+      background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
+    }
+  }
+  
+  @keyframes bottomBubbles {
+    0%{
+      background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+    }
+    50% {
+      background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;}
+   100% {
+      background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+    background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
+    }
+  }
+                                /* Small mobile */ 
+@media screen and (max-width: 320px) {
+    .txt{
+        font-size: 1rem;
+        width: 60%;
+        height: 15%;
+        margin-bottom: 10px;
+    }
+    .para-alert{
+        width: 80%;
+        margin:  0 auto;
+    }
+    .modal{
+        left: 0;
+        width: 98%;
+    }
+    
+}
+
+                                /* medium mobile */
+@media (min-width: 321px) and (max-width: 375px) {
+    .main-area{
+        width: 100%;
+    }
+    .txt{
+        font-size: 1rem;
+        width: 60%;
+        height: 15%;
+        margin-bottom: 10px;
+    }
+    .modal{
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+    .para-alert{
+        width: 80%;
+        margin:  0 auto;
+    }
+}
+                                        /* Large mobile */
+@media (min-width: 376px) and (max-width: 425px) {
+    .main-area{
+        width: 100%;
+    }
+    .modal{
+        left: 0;
+        right: 0;
+        width: 90%;
+    }
+    .para-alert{
+        width: 80%;
+        margin:  0 auto;
+    }
+    .txt{
+        font-size: 1rem;
+        margin-bottom: 10px;
+        width: 60%;
+        height: 15%;
+    }
+}    
+                                        /* for Tablet */
+@media (min-width: 426px) and (max-width: 768px) {
+    .main-area{
+        width: 100%;
+    }
+    .modal{
+        left: 0;
+        right: 0;
+        /* margin: 0 auto; */
+        width: 100%;
+
+    }
+    .para-alert{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .txt{
+        font-size: 1rem;
+        margin-bottom: 10px;
+        width: 60%;
+        height: 15%;
+    }
+}
+                                        /* for laptop */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main-area{
+        width: 100%;
+    }
+    .modal{
+        left: 0;
+        width: 60%;
+    }
+    .para-alert{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .txt{
+        font-size: 1rem;
+        margin-bottom: 10px;
+        width: 60%;
+        height: 15%;
+    }
+    
 }
