@@ -1,10 +1,9 @@
-
 const inputarea = document.querySelector('input')
 const submitbtn = document.querySelector('.submitbtn')
 const itemlist = document.querySelector('.itemList')
 const clearbtn = document.querySelector ('.clear')
 const alertpara = document.querySelector('.para-alert')
-const modal =document.querySelector('.modal')
+const modal = document.querySelector('.modal')
 const donebtn = document.querySelector('.done-btn')
 const modalinput = document.querySelector('.modal-input')
 const overlay = document.querySelector('.overlay')
@@ -15,10 +14,11 @@ const overlay = document.querySelector('.overlay')
 // console.log(alertpara)
 
 // idher humny khali array is liy chora taky is me value store kar sakhy
-let item =  []
+let item = []
 // console.log(item)
 let editedUID = null
 
+itemlist.innerHTML = item.join("")
 // Yah par hamny aik alert ka function chalya jis me humny index ki file par aik msg likha hai <p> ky tag me taky javasript ky zariy hum usko show karsaky or is settimeout lagya taky inty second me msg show hoty rahy
 const alertshow = (alerttext) => {
     alertpara.innerHTML = alerttext
@@ -34,7 +34,7 @@ const alertshow = (alerttext) => {
 const edititem = (uid)=>{
     submitbtn.innerText = `Edit`
     const mylist = Array.from(itemlist.childNodes)
-
+    editedUID = uid
     modal.classList.remove("hidden")
     overlay.classList.remove("hidden")
     const filtereddata = mylist.filter((singleitem)=>singleitem.id === uid)
@@ -52,29 +52,29 @@ const edititem = (uid)=>{
 
 
 // or idher humny edit ka process is liy chalaya taky hum kisi ko bhi easily change kar sakhy kabhi bhi
-const editprocess = (uid) =>{
+const editprocess = () =>{
 
     modal.classList.add("hidden")
 
     overlay.classList.add("hidden")
 
-    const indexnumber = item.findIndex((singleitem)=> singleitem.includes(uid))
-    item.splice(indexnumber, 1 ,`<div id="${uid}" class="item">
+    const indexnumber = item.findIndex((singleitem)=> singleitem.includes(editedUID))
+    item.splice(indexnumber, 1 ,`<div id="${editedUID}" class="item">
     <p>${modalinput.value}</p>
     <div class="btn">
-        <button onclick="edititem('${uid}')">Edit</button>
-        <button onclick="deleteitem('${uid}')">Delete</button>
+        <button onclick="edititem('${editedUID}')">Edit</button>
+        <button onclick="deleteitem('${editedUID}')">Delete</button>
     </div>`)
     itemlist.innerHTML = item.join("")
     inputarea.value = ''
     
-    // localStorage.setItem('myList', JSON.stringify(item))
     submitbtn.innerText = 'Submit'
     
     submitbtn.removeEventListener('click', editprocess)
-
+    
     submitbtn.addEventListener('click', submission)
-
+    
+    // localStorage.setItem('myList', JSON.stringify(item))
 }
 
 
@@ -89,6 +89,7 @@ const deleteitem = (uid) => {
     if(itemlist.innerHTML === ''){
         clearbtn.classList.add("hidden")
     }
+
     // localStorage.setItem('myList' , JSON.stringify(item))
 }
 
