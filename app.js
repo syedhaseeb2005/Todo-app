@@ -128,6 +128,7 @@ clearbtn.addEventListener('click', clear)
 submitbtn.addEventListener('click', submission)         
 donebtn .addEventListener("click", editprocess);
 
+
 // const c = document.body.appendChild(document.createElement('canvas')).getContext('2d')
 // const { canvas } = c
 
