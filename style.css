@@ -229,7 +229,7 @@ h1 {
     border-radius: 12px;
     width: 17em;
     height: 11em;
-    left: 472px;
+    left: 550px;
     top: 170px;
     z-index: 2;
     background: #191c29;
@@ -381,15 +381,25 @@ h1 {
         width: 60vh;
     }
     .item{
+        /* display: grid; */
+        /* grid-template-columns: 0 2fr; */
         display: flex;
+        /* flex-direction: row; */
         justify-content: space-between;
         width: 45vh;
     }
     .item p{
         display: flex;
-        width: 50%;
+        text-align: start;
+        flex-direction: column;
+        width: 80%;
+    }
+    .btn button{
+      display: flex;
     }
     .btn{
+        display: flex;
+        /* flex-direction: column; */
         margin: 0 auto;
         /* width: 10%; */
         /* padding: -100%; */
