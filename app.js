@@ -1,6 +1,7 @@
 const inputarea = document.querySelector('input')
 const submitbtn = document.querySelector('.submitbtn')
 const itemlist = document.querySelector('.itemList')
+const editbtn = document.querySelector('edit-btn')
 const clearbtn = document.querySelector ('.clear')
 const alertpara = document.querySelector('.para-alert')
 const modal = document.querySelector('.modal')
@@ -32,13 +33,12 @@ const alertshow = (alerttext) => {
 }
 // idher hum ny edit ka fucntion chalya taky hum koi bhi item asani sy add kar sakhy
 const edititem = (uid)=>{
-    submitbtn.innerText = `Edit`
+    // submitbtn.innerText = `Edit`
     
     const mylist = Array.from(itemlist.childNodes)
 
     editedUID = uid
     modal.classList.remove("hidden")
-
     
     overlay.classList.remove("hidden")
     
@@ -48,9 +48,10 @@ const edititem = (uid)=>{
     
     modalinput.value = filtereddata[0].querySelector('p').innerText
     
-    // submitbtn.removeEventListener('click',submission)
+    submitbtn.removeEventListener('click',submission)
     
-    submitbtn.addEventListener('click',()=> editprocess(uid))
+    // submitbtn.addEventListener('click',()=> editprocess(uid))
+    editbtn.addEventListener('click' , editprocess)
     // crossbtn.addEventListener('click',()=>{
     //     modal.classList.toggle('hidden')
     // })
@@ -62,7 +63,8 @@ const edititem = (uid)=>{
 // or idher humny edit ka process is liy chalaya taky hum kisi ko bhi easily change kar sakhy kabhi bhi
 const editprocess = () =>{
 
-    modal.classList.add("hidden")
+    modal.classList.add("hidden") 
+    // modalinput=== ''
 
     overlay.classList.add("hidden")
 
@@ -74,9 +76,15 @@ const editprocess = () =>{
         <button onclick="deleteitem('${editedUID}')">Delete</button>
     </div>`)
     itemlist.innerHTML = item.join("")
-    inputarea.value = ''
-    
     submitbtn.innerText = 'Submit'
+    // submitbtn.innerText = 'Submit'
+    // editbtn.style.display = 'none'
+    // submitbtn.style.display = 'inline-block'
+    setTimeout(()=>{
+        inputarea.value = ''
+
+    },1000)
+    
     
     submitbtn.removeEventListener('click', editprocess)
     

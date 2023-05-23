@@ -715,6 +715,9 @@ h1 {
 
                                 /* Small mobile */ 
 @media screen and (max-width: 320px) {
+  .box{
+    margin: 0 auto;
+  }
     .txt{
         font-size: 1rem;
         width: 60%;
@@ -732,10 +735,14 @@ h1 {
     .main-area{
         width: 60vh;
     }
+    .p{
+      font-size: 16px;
+    }
     .item{
         /* display: grid; */
         /* grid-template-columns: 0 2fr; */
         display: flex;
+        grid-template-columns: 1fr 1fr;
         /* flex-direction: row; */
         justify-content: space-between;
         width: 45vh;
@@ -778,6 +785,7 @@ h1 {
         display: flex;
         justify-content: space-between;
         width: 57vh;
+        grid-template-columns: 1fr 1fr;
     }
     .txt{
         font-size: 1rem;
@@ -813,6 +821,7 @@ h1 {
         display: flex;
         justify-content: space-around;
         width: 55vh;
+        grid-template-columns: 1fr 1fr;
     }
     .btn{
         display: flex;
@@ -835,7 +844,7 @@ h1 {
 @media (min-width: 426px) and (max-width: 768px) {
     .main-area{
         /* margin: 0 auto; */
-        width: 75vh;
+        width: 100%;
     }
     .modal{
         left: 0;
@@ -847,6 +856,7 @@ h1 {
         display: flex;
         justify-content: space-between;
         width: 50vh;
+        grid-template-columns: 1fr 1fr;
     }
     .btn{
         display: flex;
@@ -859,9 +869,9 @@ h1 {
     }
     .txt{
         font-size: 1rem;
-        margin-bottom: 10px;
+        margin-bottom: 1px;
         width: 60%;
-        height: 15%;
+        height: 17%;
     }
 }
                                         /* for laptop */
@@ -873,8 +883,11 @@ h1 {
         /* text-align: center; */
         margin-bottom: 3px;
     }
-    .txt{
-        text-align: center;
+    .item{
+      display: flex;
+      justify-content: center;
+      width: 100px;
+      grid-template-columns: 1fr 1fr;
     }
     .modal{
         /* margin: 0 auto; */
@@ -889,6 +902,10 @@ h1 {
         font-size: 1rem;
         margin-bottom: 10px;
         width: 60%;
-        height: 15%;
+        height: 20%;
     }   
+    /* .p{
+      position: relative;
+      left: 200px;
+    } */
 }
