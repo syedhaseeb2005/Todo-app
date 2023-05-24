@@ -70,11 +70,12 @@ const editprocess = () =>{
 
     const indexnumber = item.findIndex((singleitem)=> singleitem.includes(editedUID))
     item.splice(indexnumber, 1 ,`<div id="${editedUID}" class="item">
-    <p>${modalinput.value}</p>
-    <div class="btn">
-        <button onclick="edititem('${editedUID}')">Edit</button>
-        <button onclick="deleteitem('${editedUID}')">Delete</button>
-    </div>`)
+                                    <p>${modalinput.value}</p>
+                                    <div class="btn">
+                                        <button onclick="edititem('${editedUID}')">Edit</button>
+                                        <button onclick="deleteitem('${editedUID}')">Delete</button>
+                                    </div>
+                                </div>`)
     itemlist.innerHTML = item.join("")
     submitbtn.innerText = 'Submit'
     // submitbtn.innerText = 'Submit'

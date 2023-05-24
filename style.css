@@ -733,7 +733,8 @@ h1 {
         width: 98%;
     }
     .main-area{
-        width: 60vh;
+        width: 64vh;
+        height: 114vh;
     }
     .p{
       font-size: 16px;
@@ -771,8 +772,8 @@ h1 {
 @media (min-width: 321px) and (max-width: 375px) {
     .main-area{
         /* margin: 0 auto; */
-        width: 68vh;
-        height: 101vh;
+        width: 65vh;
+        height: 112vh;
     }
     .btn{
         margin: 0 auto;
